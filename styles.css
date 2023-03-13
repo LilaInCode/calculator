@@ -1,0 +1,31 @@
+body{
+    text-align: center;
+}
+
+.main{
+    width: 300px;
+    height: 400px;
+    background-color: grey;
+}
+.display{
+    height: 50px;
+    border: 5px solid red;
+}
+.keyboard{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: repeat(4,1fr);
+    
+}
+
+.number, .operator{
+    background-color: pink;
+    padding: 5px;
+    margin: 5px;
+    height: 50px;
+   
+}
+
+.changecolor{
+    background-color: red; 
+}
