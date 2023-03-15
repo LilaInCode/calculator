@@ -42,25 +42,36 @@ const numbers=document.querySelectorAll('.number');
 const operators=document.querySelectorAll('.operator')
 const del=document.querySelector('.delete');
 const clear=document.querySelector('.clear');
-const allButtons=document.querySelectorAll('.number.operator.delete.clear');
+const allButtons=document.querySelectorAll('.number,.operator,.delete,.clear');
 
-numbers.forEach(number=>number.addEventListener('click',displayValue));
-operators.forEach(operator=>operator.addEventListener('click',operation));
-allButtons.forEach(button=>button.addEventListener('mouseup',removeChange));
-allButtons.forEach(button=>button.addEventListener('click',(e)=>e.target.classList.add('changecolor')));
+numbers.forEach(number=>number.addEventListener('click',()=>displayValue(number.textContent)));
+operators.forEach(operator=>operator.addEventListener('click',()=>operation(operator.textContent)));
+allButtons.forEach(button=>button.addEventListener('mouseup',()=>button.classList.remove('changecolor')));
+allButtons.forEach(button=>button.addEventListener('mousedown',()=>button.classList.add('changecolor')));
 del.addEventListener('click',resetDisplay);
 clear.addEventListener('click',clearNumber);
 equal.addEventListener('click',calculating);
+window.addEventListener('keydown',keyboardFunction)
 
-function removeChange(e){
-    e.target.classList.remove('changecolor');
+function keyboardFunction(e){
+    if(e.key<=9&&e.key>=0||e.key==='.') displayValue(e.key)
+    if(e.key==='+'||e.key==='-'||e.key==='*'||e.key==='/') operation(convertOperator(e.key))
+    if(e.key==='Backspace') clearNumber()
+    if(e.key==='Escape') resetDisplay()
+    if(e.key==='='||e.key==='Enter') calculating()
 }
 
-function displayValue(e){
-    if (calculationOver||currentOperator&&!newDisplay) {resetDisplay();
-        calculationOver=false;
+function convertOperator(o){
+    if(o==='+') return '+'
+    if(o==='-') return '-'
+    if(o==='*') return 'x'
+    if(o==='/') return '/'
     }
-    display.textContent+=e.target.textContent;
+
+function displayValue(n){
+    if (calculationOver||currentOperator&&!newDisplay) {resetDisplay();
+    }
+    display.textContent+=n;
     newDisplay=true;
 }
 
@@ -68,9 +79,9 @@ function clearNumber(){
    return display.textContent=display.textContent.slice(0,-1);
 }
 
-function operation(e){
+function operation(o){
     if (currentOperator) calculating(); 
-    currentOperator=e.target.textContent;
+    currentOperator=o;
     result=display.textContent;
     newDisplay=false;
 }
@@ -91,8 +102,9 @@ function dividing(a,b){
 }
 
 function resetDisplay(){
-  
     display.textContent='';
+    calculationOver=false;
+    newDisplay=true;
 }
 
 function calculating(){

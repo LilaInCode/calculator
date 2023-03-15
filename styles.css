@@ -1,31 +1,77 @@
+:root{
+    --main-bg-color: yellow;
+    --font-color:purple;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+    /* footer support */
+    position: relative;
+    min-height: 100%;
+  }
+
 body{
-    text-align: center;
+    background-color: var(--main-bg-color);
+    color:var(--font-color);
+    line-height: 1.6;
 }
 
 .main{
-    width: 300px;
-    height: 400px;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
+    height: 600px;
     background-color: grey;
+    border: 2px black solid;
+    border-radius: 15px;
+    padding: 20px;
+    height: 75vh;
+   
 }
 .display{
+    padding: 10px 20px;
+    border: 2px black solid;
+    border-radius: 5px;
+    text-align: right;
+    background-color: wheat;
+    margin-bottom: 10px;
+    word-wrap: break-word;
+    word-break: break-all;
     height: 50px;
-    border: 5px solid red;
 }
 .keyboard{
     display: grid;
     grid-template-columns: repeat(4,1fr);
-    grid-template-rows: repeat(4,1fr);
-    
+   
 }
 
 .number, .operator{
     background-color: pink;
-    padding: 5px;
-    margin: 5px;
-    height: 50px;
-   
+    border: 2px black solid;
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 20px;
 }
 
+
 .changecolor{
-    background-color: red; 
+    background-color: greenyellow; 
+}
+
+button{
+    width: 100px;
+    height: 50px;
+    margin-bottom: 10px;
+    font-size:x-large;
+    border: 2px black solid;
+    border-radius: 5px;
+    
+
 }
